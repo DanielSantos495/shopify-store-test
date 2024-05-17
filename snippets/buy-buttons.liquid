@@ -54,6 +54,7 @@
           disabled
           class="product-variant-id"
         >
+          <input type="number" name="quantity" value="2" class="hidden"/>
 
         {%- if gift_card_recipient_feature_active -%}
           {%- render 'gift-card-recipient-form', product: product, form: form, section: section -%}
