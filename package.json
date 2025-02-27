@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "theme": "shopify theme dev --store=xxxxx.myshopify.com",
+    "theme": "shopify theme dev --store work-test-daniel",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",

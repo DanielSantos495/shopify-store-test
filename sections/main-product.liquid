@@ -315,8 +315,74 @@
             {%- when 'variant_picker' -%}
               {% render 'product-variant-picker', product: product, block: block, product_form_id: product_form_id %}
             {%- when 'buy_buttons' -%}
-              {%- render 'buy-buttons', block: block, product: product, product_form_id: product_form_id, section_id: section.id, show_pickup_availability: true -%}
-              {%- render 'buy-buttons', block: block, product: product, product_form_id: product_form_id, section_id: section.id, show_pickup_availability: true -%}
+              {% render 'product-variant-picker', product: product, block: block, product_form_id: product_form_id %}
+
+              {% capture discounts %}
+                <input type="hidden" name="properties[qty_0]" value="2"  />
+                <input type="hidden" name="properties[discount_0]" value="10"  />
+                <input type="hidden" name="properties[qty_1]" value="4"  />
+                <input type="hidden" name="properties[discount_1]" value="15"  />
+                <input type="hidden" name="properties[qty_2]" value="6"  />
+                <input type="hidden" name="properties[discount_2]" value="20"  />
+                <input type="hidden" name="properties[bundle_id]" value="bundle-pdp"  />
+              {% endcapture %}
+              {% capture discount1 %}
+                <input type="number" name="quantity" value="2" class="hidden"/>
+                {{ discounts }}
+              {% endcapture %}
+              <h1>2 - 10%</h1>
+              {%- render 'buy-buttons',
+              block: block,
+              product: product,
+              product_form_id: product_form_id,
+              section_id: section.id,
+              show_pickup_availability: true
+              custom_liquid: discount1
+            -%}
+              {% capture discount2 %}
+                <input type="number" name="quantity" value="4" class="hidden"/>
+                {{ discounts }}
+              
+              {% endcapture %}
+              <h1>4 - 15%</h1>
+
+              {%- render 'buy-buttons',
+              block: block,
+              product: product,
+              product_form_id: product_form_id,
+              section_id: section.id,
+              show_pickup_availability: true
+              custom_liquid: discount2
+            -%}
+              {% capture discount3 %}
+                <input type="number" name="quantity" value="6" class="hidden"/>
+                {{ discounts }}
+
+              {% endcapture %}
+              <h1>6 - 20%</h1>
+              {%- render 'buy-buttons',
+                block: block,
+                product: product,
+                product_form_id: product_form_id,
+                section_id: section.id,
+                show_pickup_availability: true
+                custom_liquid: discount3
+              -%}
+
+              {% capture normi %}
+                <input type="number" name="quantity" value="1" class="hidden"/>
+
+              {% endcapture %}
+              {%- render 'buy-buttons',
+              block: block,
+              product: product,
+              product_form_id: product_form_id,
+              section_id: section.id,
+              show_pickup_availability: true
+              custom_liquid: normi
+            -%}
+              
+              {% comment %} {%- render 'buy-buttons', block: block, product: product, product_form_id: product_form_id, section_id: section.id, show_pickup_availability: true -%} {% endcomment %}
             {%- when 'rating' -%}
               {%- if product.metafields.reviews.rating.value != blank -%}
                 {% liquid
